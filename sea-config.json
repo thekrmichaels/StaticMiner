@@ -1,0 +1,5 @@
+{
+  "main": "dist/staticminer.cjs",
+  "mainFormat": "commonjs",
+  "output": "exec/staticminer.exe"
+}

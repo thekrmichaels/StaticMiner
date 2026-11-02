@@ -1,0 +1,29 @@
+{
+  "name": "StaticMiner",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A CLI tool for analyzing and extracting HTML structures and CSS class selectors in legacy frontend projects.",
+  "author": "Amilkar Díaz <amilkarjdiazh@outlook.com>",
+  "license": "MIT",
+  "private": true,
+  "main": "./dist/index.js",
+  "bin": "./dist/cli.js",
+  "files": [
+    "dist/**/*",
+    "!dist/**/*.test.js"
+  ],
+  "scripts": {
+    "clean": "node -e \"const fs = require('node:fs'); fs.rmSync('./exec', { recursive: true, force: true }); fs.mkdirSync('./exec', { recursive: true });\"",
+    "dev": "node --watch ./src/cli.ts",
+    "test": "pnpm run build && node --test",
+    "build": "tsc --rewriteRelativeImportExtensions",
+    "bundle": "esbuild src/index.ts --bundle --platform=node --format=cjs --outfile=dist/staticminer.cjs",
+    "build:sea": "pnpm run clean && pnpm run bundle && node --build-sea sea-config.json"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  },
+  "packageManager": "pnpm@12.18.0"
+}
